@@ -4,45 +4,35 @@
   <h2>age : {{ age }}</h2>
   <h3>job type : {{ job.type }}</h3>
   <h3>job salary : {{ job.salary }}</h3>
-  <h3>测试的数据c : {{ job.a.b.c }}</h3>
-  <h3>爱好: {{ hobby }}</h3>
   <button @click="changeInfo">Change Info</button>
 </template>
 
 <script>
-import { ref, reactive} from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'App',
   setup(){
     let name = ref('wanglin')
     let age = ref(18)
-    let job = reactive({
+    let job = ref({
       type: '前端工程师',
-      salary: '30k',
-      a: {
-        b: {
-          c: 666
-        }
-      }
+      salary: '30k'
     })
-    let hobby = ['抽烟', '喝酒', '烫头']
 
     function changeInfo(){
-      //name.value = 'ponyo'
-      //age.value = 20
-      job.type = '人工智能工程师',
-      job.salary = '50k'
-      job.a.b.c = 9999
+      console.log(name) //name 为RefIml引用实例对象
+      name.value = 'ponyo'
+      age.value = 20
+      job.value.type = '人工智能工程师',
+      job.value.salary = '50k'
     }
 
     return {
       name,
       age,
       changeInfo,
-      job,
-      hobby
-      
+      job
     }
   }
 }
