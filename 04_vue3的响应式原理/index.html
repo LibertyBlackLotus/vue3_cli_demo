@@ -5,7 +5,47 @@
   </head>
   <body>
     <script type="text/javascript">
+      //源数据
+      let person = {
+        name: '张三',
+        age: 18
+      }
 
+      //模拟vue2中实现响应式
+      //#region
+      /* let p = {}
+      Object.defineProperty(p, 'name', {
+        get(){
+          return person.name
+        },
+        set(value){
+          console.log('有人修改name了，我去更新页面了')
+          person.name = value
+        }
+      })
+      Object.defineProperty(p, 'age', {
+        get(){
+          return person.age
+        },
+        set(value){
+          console.log('有人修改age了，我去更新页面了')
+          person.age = value
+        }
+      }) */
+      //#endregion
+
+      //模拟vue3中实现响应式
+      const p = new Proxy(person, {
+        get(target, propName){
+          console.log(`有人读取了p的${propName}属性`)
+          return target[propName]
+        },
+        set(target, propName, value){
+          console.log(`有人修改了p的${propName}属性，值为${value}`)
+          target[propName] = value
+        }
+      })
+      
     </script>
       
     
