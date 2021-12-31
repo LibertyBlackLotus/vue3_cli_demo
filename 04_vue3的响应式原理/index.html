@@ -43,6 +43,10 @@
         set(target, propName, value){
           console.log(`有人修改了p的${propName}属性，值为${value}`)
           target[propName] = value
+        },
+        deleteProperty(target, propName){
+          console.log(`有人删除了p的${propName}属性，我去更新界面了`)
+          return delete target[propName]
         }
       })
       
